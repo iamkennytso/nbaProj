@@ -4,7 +4,7 @@ import {BrowserRouter as Router, Link, Route} from 'react-router-dom'
 
 import Home from './components/Home.jsx'
 import Instructions from './components/Instructions.jsx'
-import Edit from './components/Edit.jsx'
+import Edit from './components/Add_Edit.jsx'
 
 class App extends React.Component {
   constructor(props) {
@@ -23,19 +23,22 @@ class App extends React.Component {
     return (
       <Router>
         <div>
-          Hello {this.state.mess}
-          <Link to={'/ins'}>
-            <button>Tell me what to do</button>
-          </ Link>
+          <header className="App-header">
+            <img src='/nba_logo.svg' className="App-logo" alt="logo" />
+            <h1 className="App-title">Interview Project</h1>
+          </header>
           <Route path='/' exact={true} render={() => <Home players={this.state.players} />} />
           <Route path='/ins' render={Instructions}/>
+          <Route path='/add' render={() => <Edit editMode={false} history={history} />} />
           <Route path='/edit/:playerId' render={({match}) => {
             return (
               <Edit 
+                editMode={true}
                 player={this.state.players.find(player => player.playerId === match.params.playerId)} 
                 history={history}
               />)
           }} />
+          <br/>
         </div>
       </Router>
     );
