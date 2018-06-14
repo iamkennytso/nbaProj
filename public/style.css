@@ -1,0 +1,59 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+  text-align: center;
+}
+
+.App-title {
+  font-size: 1.5em;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+.App-article {
+  margin: 0 auto;
+  max-width: 600px;
+  padding: 0 15px;
+}
+
+.App-article-title {
+  text-align: left;
+  width: 100%;
+}
+
+.App-article-list {
+  width: 100%;
+}
+
+.App-article-list {
+  padding-left: 25px;
+  width: calc(100% - 25px);
+}
+
+.App-article-list li {
+  margin: 10px 0;
+}
+
+
+@media (max-width: 768px) {
+  .App-article-list {
+    list-style: none;
+    padding-left: 0;
+    width: 100%;
+  }
+}
