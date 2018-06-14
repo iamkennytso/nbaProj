@@ -4,6 +4,7 @@ import {BrowserRouter as Router, Link, Route} from 'react-router-dom'
 
 import Home from './components/Home.jsx'
 import Instructions from './components/Instructions.jsx'
+import Edit from './components/Edit.jsx'
 
 class App extends React.Component {
   constructor(props) {
@@ -28,6 +29,12 @@ class App extends React.Component {
           </ Link>
           <Route path='/' exact={true} render={() => <Home players={this.state.players} />} />
           <Route path='/ins' render={Instructions}/>
+          <Route path='/edit/:playerId' render={({match}) => {
+            return (
+              <Edit 
+                player={this.state.players.find(player => player.playerId === match.params.playerId)} 
+              />)
+          }} />
         </div>
       </Router>
     );
