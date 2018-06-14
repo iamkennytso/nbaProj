@@ -1,0 +1,105 @@
+{
+  "players": [
+    {
+      "id": 1,
+      "displayName": "LeBron James",
+      "firstName": "LeBron",
+      "jerseyNo": "23",
+      "lastName": "James",
+      "playerId": "2544",
+      "position": "F-G",
+      "teamAbbr": "CLE"
+    },
+    {
+      "id": 2,
+      "displayName": "Anthony Davis",
+      "firstName": "Anthony",
+      "jerseyNo": "23",
+      "lastName": "Davis",
+      "playerId": "203076",
+      "position": "F-C",
+      "teamAbbr": "NOP"
+    },
+    {
+      "id": 3,
+      "displayName": "Russell Westbrook",
+      "firstName": "Russell",
+      "jerseyNo": "0",
+      "lastName": "Westbrook",
+      "playerId": "201566",
+      "position": "G",
+      "teamAbbr": "OKC"
+    },
+    {
+      "id": 4,
+      "displayName": "James Harden",
+      "firstName": "James",
+      "jerseyNo": "13",
+      "lastName": "Harden",
+      "playerId": "201935",
+      "position": "G",
+      "teamAbbr": "HOU"
+    },
+    {
+      "id": 5,
+      "displayName": "Kevin Durant",
+      "firstName": "Kevin",
+      "jerseyNo": "35",
+      "lastName": "Durant",
+      "playerId": "201142",
+      "position": "F",
+      "teamAbbr": "GSW"
+    },
+    {
+      "id": 6,
+      "displayName": "John Wall",
+      "firstName": "John",
+      "jerseyNo": "2",
+      "lastName": "Wall",
+      "playerId": "202322",
+      "position": "G",
+      "teamAbbr": "WAS"
+    },
+    {
+      "id": 7,
+      "displayName": "Giannis Antetokounmpo",
+      "firstInitial": "G",
+      "firstName": "Giannis",
+      "jerseyNo": "34",
+      "lastName": "Antetokounmpo",
+      "playerId": "203507",
+      "position": "F",
+      "teamAbbr": "MIL"
+    },
+    {
+      "id": 8,
+      "displayName": "CJ McCollum",
+      "firstName": "CJ",
+      "jerseyNo": "3",
+      "lastName": "McCollum",
+      "playerId": "203468",
+      "position": "G",
+      "teamAbbr": "POR"
+    },
+    {
+      "id": 9,
+      "displayName": "Paul George",
+      "firstName": "Paul",
+      "jerseyNo": "13",
+      "lastName": "George",
+      "playerId": "202331",
+      "position": "F",
+      "teamAbbr": "OKC"
+    },
+    {
+      "id": 10,
+      "displayName": "Stephen Curry",
+      "firstName": "Stephen",
+      "jerseyNo": "30",
+      "lastName": "Curry",
+      "playerId": "201939",
+      "position": "G",
+      "teamAbbr": "GSW"
+    }
+  ]
+}
