@@ -16,8 +16,8 @@ class App extends React.Component {
   }
   componentWillMount(){
     fetch('http://localhost:3000/players')
-    .then(data => data.json())
-    .then(Json => this.setState({ players: Json}))
+      .then(data => data.json())
+      .then(Json => this.setState({ players: Json}))
   }
   render() {
     return (
