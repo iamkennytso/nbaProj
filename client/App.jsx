@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDom from 'react-dom';
 import {BrowserRouter as Router, Link, Route} from 'react-router-dom'
 
+import Home from './components/Home.jsx'
 import Instructions from './components/Instructions.jsx'
 
 class App extends React.Component {
@@ -9,7 +10,13 @@ class App extends React.Component {
     super(props);
     this.state = {
       mess:'world',
+      players:[]
     }
+  }
+  componentWillMount(){
+    fetch('http://localhost:3000/players')
+    .then(data => data.json())
+    .then(Json => this.setState({ players: Json}))
   }
   render() {
     return (
@@ -19,6 +26,7 @@ class App extends React.Component {
           <Link to={'/ins'}>
             <button>Tell me what to do</button>
           </ Link>
+          <Route path='/' exact={true} render={() => <Home players={this.state.players} />} />
           <Route path='/ins' render={Instructions}/>
         </div>
       </Router>
