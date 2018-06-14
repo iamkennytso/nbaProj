@@ -10,6 +10,7 @@ class Edit extends React.Component {
     }
   }
   componentWillMount(){
+    console.log(this.props.history)
     this.setState({
       firstName: this.props.player.firstName,
       lastName: this.props.player.lastName,
@@ -37,8 +38,24 @@ class Edit extends React.Component {
         "Content-type": "application/json"
       }
     })
-    .then(response => response.json())
-    .then(json => console.log(json))
+    //https://reacttraining.com/react-router/web/api/history
+    //Not sure why push isn't working here. when i log out history, it doesn't have a push function.
+    //This solution actually sucks... it doesn't refresh the page with the new info...
+    .then(this.props.history.go(-1))
+    .catch(err => console.error(err))
+  }
+  delete(){
+    //I'm not sure why this delete is deleting the entire array instead of just the object
+    //that has the id indicated after the players/ ...
+    //This is my first time using json server 
+    fetch(`http://localhost:3000/players/${this.props.player.id}/`, {
+      method: 'DELETE',
+      headers: {
+        "Content-type": "application/json"
+      }
+    })
+    .then(payload => console.log(payload))
+    .catch(err => console.error(err))
   }
   render(){
     return (
@@ -81,8 +98,10 @@ class Edit extends React.Component {
           /> <br/>
           <Button variant="raised" type="submit"> Submit Changes </Button>{' '}
         </form>
+        <Button varient="raised" color="secondary" onClick={() => this.delete()} >DELETE</Button>
       </div>
     )
   }
 }
+
 export default Edit

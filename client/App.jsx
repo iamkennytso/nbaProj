@@ -33,6 +33,7 @@ class App extends React.Component {
             return (
               <Edit 
                 player={this.state.players.find(player => player.playerId === match.params.playerId)} 
+                history={history}
               />)
           }} />
         </div>

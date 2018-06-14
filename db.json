@@ -2,12 +2,12 @@
   "players": [
     {
       "playerId": "2544",
-      "firstName": "The King",
+      "firstName": "TKing",
       "lastName": "James",
       "jerseyNo": "23",
       "position": "F-G",
       "teamAbbr": "CLE",
-      "displayName": "The King James",
+      "displayName": "TKing James",
       "id": 1
     },
     {
@@ -102,16 +102,4 @@
       "teamAbbr": "GSW"
     }
   ],
-  "test": [
-    {
-      "title": "foo",
-      "body": "bar",
-      "userId": 1,
-      "id": 1
-    },
-    {
-      "firstName": "Paul",
-      "id": 2
-    }
-  ]
 }
