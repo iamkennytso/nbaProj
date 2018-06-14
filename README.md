@@ -1,4 +1,4 @@
-# PokerdexV2
+# README
 
 I had trouble getting the repo to work at first, since some of the dependencies didn't install because I'm not on a Mac machine.
 
