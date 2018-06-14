@@ -86,7 +86,7 @@ class Edit extends React.Component {
   render(){
     return (
       //need to debounce this image updating
-      <div>
+      <div id='editDiv'>
         <img 
           src={`https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/${this.state.playerId}.png`}
           alt='Check your player ID' 

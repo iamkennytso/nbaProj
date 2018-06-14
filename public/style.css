@@ -67,3 +67,8 @@ body {
   margin:4px;
   width:30%;
 }
+#editDiv{
+  display:flex;
+  align-items: flex-start;
+  justify-content: center;
+}
