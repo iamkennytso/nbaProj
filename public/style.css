@@ -57,3 +57,13 @@ body {
     width: 100%;
   }
 }
+
+#homeDiv{
+  display:flex;
+  flex-direction: row;
+  flex-wrap: wrap
+}
+.playerCard{
+  margin:4px;
+  width:30%;
+}

@@ -3,7 +3,7 @@ import React from 'react'
 import Card from './PlayerCard.jsx'
 const home = (props) => {
   return (
-    <div>
+    <div id='homeDiv'>
       {props.players.map(player => <Card player={player} key={player.id} />)}
     </div>
   )
