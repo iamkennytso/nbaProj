@@ -3,11 +3,6 @@ import React from 'react'
 const instructions = (props) => {
   return (
     <section className="App">
-      <header className="App-header">
-        <img src='/nba_logo.svg' className="App-logo" alt="logo" />
-        <h1 className="App-title">Interview Project</h1>
-      </header>
-
       <br/>
 
       <article className="App-article">

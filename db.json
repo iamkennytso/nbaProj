@@ -103,22 +103,13 @@
     },
     {
       "playerId": "202391",
-      "firstName": "rewq",
-      "lastName": "rewq",
-      "jerseyNo": "rewq",
-      "position": "rewq",
-      "displayName": "rewq rewq",
+      "firstName": "2",
+      "lastName": "2",
+      "jerseyNo": "2",
+      "position": "2",
+      "teamAbbr": "2",
+      "displayName": "2 2",
       "id": 11
-    },
-    {
-      "playerId": "202391",
-      "firstName": "test",
-      "lastName": "test",
-      "jerseyNo": "test",
-      "position": "test",
-      "teamAbbr": "test",
-      "displayName": "test test",
-      "id": 12
     }
   ],
   "test": [

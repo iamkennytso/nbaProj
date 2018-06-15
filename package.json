@@ -4,7 +4,7 @@
   "description": "Coding Challenge for NBA",
   "main": "server/main.js",
   "scripts": {
-    "start": "webpack && node server/main.js "
+    "start": "webpack && node server/main.js && json-server --watch db.json"
   },
   "repository": {
     "type": "git"

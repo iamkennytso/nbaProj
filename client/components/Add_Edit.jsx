@@ -1,6 +1,7 @@
 import React from 'react'
 import TextField from 'material-ui/TextField';
 import Button from 'material-ui/Button';
+import { withRouter } from 'react-router-dom'
 
 class Edit extends React.Component {
   constructor(props) {
@@ -54,16 +55,12 @@ class Edit extends React.Component {
         "Content-type": "application/json"
       }
     })
-    //https://reacttraining.com/react-router/web/api/history
-    //Not sure why push isn't working here. when i log out history, it doesn't have a push function.
-    //This solution actually sucks... it doesn't refresh the page with the new info...
     .then(payload => {
       payload.json()
       console.log(payload)
     })
     .then(json =>{
-      console.log(json)
-      this.props.history.go(-1)
+      this.props.backToHome()
     })
     .catch(err => console.error(err))
   }
@@ -79,7 +76,7 @@ class Edit extends React.Component {
       }
     })
     //see above comment on this.
-    .then(this.props.history.go(-1))
+    .then(withRouter.history.push('/'))
     .catch(err => console.error(err))
   }
 
@@ -122,9 +119,9 @@ class Edit extends React.Component {
             value={this.state.teamAbbr}
             onChange={(e) => this.setState({ teamAbbr: e.target.value }) }
           /> <br/>
-          <Button variant="raised" type="submit"> {this.editMode ? 'Submit Changes' : 'Create Player' } </Button>{' '}
+          <Button variant="raised" type="submit"> {this.state.editMode ? 'Submit Changes' : 'Create Player' } </Button>{' '}
         </form>
-        {this.editMode ? <Button varient="raised" color="secondary" onClick={() => this.delete()} >DELETE</Button> : null}
+        {this.state.editMode ? <Button varient="raised" color="secondary" onClick={() => this.delete()} >DELETE</Button> : null}
       </div>
     )
   }

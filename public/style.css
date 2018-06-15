@@ -57,11 +57,20 @@ body {
     width: 100%;
   }
 }
-
 #homeDiv{
+  display:grid;
+  grid-template-rows: auto auto
+}
+#homeTop{
+  grid-row: 1/2;
   display:flex;
   flex-direction: row;
   flex-wrap: wrap
+}
+#homeBottom{
+  grid-row:2/3;
+  display:flex;
+  justify-content: space-between
 }
 .playerCard{
   margin:4px;

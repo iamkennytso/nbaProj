@@ -13,11 +13,17 @@ class App extends React.Component {
       mess:'world',
       players:[]
     }
+    this.backToHome = this.backToHome.bind(this)
   }
   componentWillMount(){
     fetch('http://localhost:3000/players')
       .then(data => data.json())
       .then(Json => this.setState({ players: Json}))
+  }
+  backToHome(){
+    fetch('http://localhost:3000/players')
+      .then(data => data.json())
+      .then(Json => this.setState({ players: Json}, history.go(-1)))
   }
   render() {
     return (
@@ -28,14 +34,14 @@ class App extends React.Component {
             <h1 className="App-title">Interview Project</h1>
           </header>
           <Route path='/' exact={true} render={() => <Home players={this.state.players} />} />
-          <Route path='/ins' render={Instructions}/>
-          <Route path='/add' render={() => <Edit editMode={false} history={history} />} />
+          <Route path='/ins' render={Instructions} />
+          <Route path='/add' render={() => <Edit editMode={false} backToHome={this.backToHome} />} />
           <Route path='/edit/:playerId' render={({match}) => {
             return (
               <Edit 
                 editMode={true}
                 player={this.state.players.find(player => player.playerId === match.params.playerId)} 
-                history={history}
+                backToHome={this.backToHome}
               />)
           }} />
           <br/>
