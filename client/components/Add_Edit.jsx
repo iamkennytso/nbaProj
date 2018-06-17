@@ -2,20 +2,20 @@ import React from 'react'
 import TextField from 'material-ui/TextField';
 import Button from 'material-ui/Button';
 import { withRouter } from 'react-router-dom'
+import { debounce } from 'lodash'
 
 class Edit extends React.Component {
   constructor(props) {
     super(props);
     this.state = { 
       editMode:'',
-      key:'meh'
     }
     this.handleChange = this.handleChange.bind(this)
+    this.debouncedPlayerId = debounce(this.debouncedPlayerId, 1000)
   }
 
   componentWillMount(){
-    console.log('mount')
-    if(this.props.editMode && !this.props.playerId){
+    if(this.props.editMode){
       this.setState({
         editMode: true,
         firstName: this.props.player.firstName,
@@ -23,7 +23,8 @@ class Edit extends React.Component {
         jerseyNo: this.props.player.jerseyNo,
         position: this.props.player.position,
         teamAbbr: this.props.player.teamAbbr,
-        playerId: this.props.player.playerId
+        playerId: this.props.player.playerId,
+        awaitingPlayerId: this.props.player.playerId
       })
     } else{
       this.setState({
@@ -33,7 +34,8 @@ class Edit extends React.Component {
         jerseyNo: '',
         position: '',
         teamAbbr: '',
-        playerId: ''
+        playerId: '',
+        awaitingPlayerId
       })
     }
     
@@ -41,7 +43,6 @@ class Edit extends React.Component {
   
   //If I had more time, I would validate some of these entries
   submitForm(e){
-    console.log('submitform')
     e.preventDefault()
     fetch(`http://localhost:3000/players/${this.state.editMode ? this.props.player.id : ''}`, {
       method: this.state.editMode ? 'PUT' : 'POST',
@@ -69,7 +70,6 @@ class Edit extends React.Component {
   }
 
   delete(){
-    console.log('delete')
     //I'm not sure why this delete is deleting the entire array instead of just the object
     //that has the id indicated after the players/ ...
     //This is my first time using json server 
@@ -83,19 +83,23 @@ class Edit extends React.Component {
     .then(withRouter.history.push('/'))
     .catch(err => console.error(err))
   }
-  handleChange (e){
+  handleChange(e){
     this.setState({ [e.target.id]: e.target.value})
+    if(e.target.id === 'playerId') {
+      this.debouncedPlayerId(e.target.value)
+    }
+  }
+  debouncedPlayerId(val){
+    this.setState({awaitingPlayerId : val})
   }
   render(){
-    console.log('render')
     return (
       //need to debounce this image updating
       <div id='editDiv'>
         <img 
-          src={`https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/${this.state.playerId}.png`}
+          src={`https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/${this.state.awaitingPlayerId}.png`}
           alt='Check your player ID' 
         />
-          {this.state.key}
         <form onSubmit={(e) => this.submitForm(e)}>
           <TextField
             label="Player ID"
