@@ -7,13 +7,15 @@ class Edit extends React.Component {
   constructor(props) {
     super(props);
     this.state = { 
-      editMode:''
+      editMode:'',
+      key:'meh'
     }
+    this.handleChange = this.handleChange.bind(this)
   }
 
   componentWillMount(){
-    console.log(this.props.history)
-    if(this.props.editMode){
+    console.log('mount')
+    if(this.props.editMode && !this.props.playerId){
       this.setState({
         editMode: true,
         firstName: this.props.player.firstName,
@@ -34,11 +36,12 @@ class Edit extends React.Component {
         playerId: ''
       })
     }
-
+    
   }
   
   //If I had more time, I would validate some of these entries
   submitForm(e){
+    console.log('submitform')
     e.preventDefault()
     fetch(`http://localhost:3000/players/${this.state.editMode ? this.props.player.id : ''}`, {
       method: this.state.editMode ? 'PUT' : 'POST',
@@ -66,6 +69,7 @@ class Edit extends React.Component {
   }
 
   delete(){
+    console.log('delete')
     //I'm not sure why this delete is deleting the entire array instead of just the object
     //that has the id indicated after the players/ ...
     //This is my first time using json server 
@@ -79,8 +83,11 @@ class Edit extends React.Component {
     .then(withRouter.history.push('/'))
     .catch(err => console.error(err))
   }
-
+  handleChange (e){
+    this.setState({ [e.target.id]: e.target.value})
+  }
   render(){
+    console.log('render')
     return (
       //need to debounce this image updating
       <div id='editDiv'>
@@ -88,36 +95,43 @@ class Edit extends React.Component {
           src={`https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/${this.state.playerId}.png`}
           alt='Check your player ID' 
         />
+          {this.state.key}
         <form onSubmit={(e) => this.submitForm(e)}>
           <TextField
             label="Player ID"
+            id='playerId'
             value={this.state.playerId}
-            onChange={(e) => this.setState({ playerId: e.target.value }) }
+            onChange={this.handleChange}
           /> <br/>
           <TextField
             label="First Name"
+            id='firstName'
             value={this.state.firstName}
-            onChange={(e) => this.setState({ firstName: e.target.value }) }
+            onChange={this.handleChange}
           /> <br/>
           <TextField
             label="Last Name"
+            id='lastName'
             value={this.state.lastName}
-            onChange={(e) => this.setState({ lastName: e.target.value }) }
+            onChange={this.handleChange}
           /> <br/>
           <TextField
             label="Jersey Number"
+            id='jerseyNo'
             value={this.state.jerseyNo}
-            onChange={(e) => this.setState({ jerseyNo: e.target.value }) }
+            onChange={this.handleChange}
           /> <br/>
           <TextField
             label="Position"
+            id='position'
             value={this.state.position}
-            onChange={(e) => this.setState({ position: e.target.value }) }
+            onChange={this.handleChange}
           /> <br/>
           <TextField
             label="Team"
+            id='teamAbbr'
             value={this.state.teamAbbr}
-            onChange={(e) => this.setState({ teamAbbr: e.target.value }) }
+            onChange={this.handleChange}
           /> <br/>
           <Button variant="raised" type="submit"> {this.state.editMode ? 'Submit Changes' : 'Create Player' } </Button>{' '}
         </form>
