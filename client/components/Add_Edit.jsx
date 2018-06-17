@@ -16,17 +16,12 @@ class Edit extends React.Component {
 
   componentWillMount(){
     if(this.props.editMode){
-      this.setState({
-        editMode: true,
-        firstName: this.props.player.firstName,
-        lastName: this.props.player.lastName,
-        jerseyNo: this.props.player.jerseyNo,
-        position: this.props.player.position,
-        teamAbbr: this.props.player.teamAbbr,
-        playerId: this.props.player.playerId,
-        awaitingPlayerId: this.props.player.playerId
-      })
-    } else{
+      //I couldn't get it to work with the spread operator, I kept getting syntax errors
+      let player = Object.assign({}, this.props.player)
+      player.editMode = true;
+      player.awaitingPlayerId = player.playerId
+      this.setState(player)
+    } else {
       this.setState({
         editMode: false,
         firstName: '',
@@ -35,26 +30,21 @@ class Edit extends React.Component {
         position: '',
         teamAbbr: '',
         playerId: '',
-        awaitingPlayerId
+        awaitingPlayerId: ''
       })
     }
-    
   }
   
   //If I had more time, I would validate some of these entries
   submitForm(e){
     e.preventDefault()
+    let player = Object.assign({}, this.state)
+    delete player.awaitingPlayerId
+    delete player.editMode
+    player.displayName = `${this.state.firstName} ${this.state.lastName}`
     fetch(`http://localhost:3000/players/${this.state.editMode ? this.props.player.id : ''}`, {
       method: this.state.editMode ? 'PUT' : 'POST',
-      body: JSON.stringify({
-        playerId: this.state.playerId,
-        firstName: this.state.firstName,
-        lastName: this.state.lastName,
-        jerseyNo: this.state.jerseyNo,
-        position: this.state.position,
-        teamAbbr: this.state.teamAbbr,
-        displayName: `${this.state.firstName} ${this.state.lastName}`
-      }),
+      body: JSON.stringify(player),
       headers: {
         "Content-type": "application/json"
       }
@@ -79,8 +69,7 @@ class Edit extends React.Component {
         "Content-type": "application/json"
       }
     })
-    //see above comment on this.
-    .then(withRouter.history.push('/'))
+    .then(this.props.backToHome())
     .catch(err => console.error(err))
   }
   handleChange(e){
@@ -94,13 +83,13 @@ class Edit extends React.Component {
   }
   render(){
     return (
-      //need to debounce this image updating
       <div id='editDiv'>
         <img 
           src={`https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/${this.state.awaitingPlayerId}.png`}
           alt='Check your player ID' 
         />
         <form onSubmit={(e) => this.submitForm(e)}>
+        {/* Should I map over the state for these? */}
           <TextField
             label="Player ID"
             id='playerId'

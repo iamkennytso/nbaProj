@@ -102,26 +102,14 @@
       "teamAbbr": "GSW"
     },
     {
-      "playerId": "202391",
       "firstName": "2",
       "lastName": "2",
       "jerseyNo": "2",
       "position": "2",
       "teamAbbr": "2",
       "displayName": "2 2",
-      "id": 11
-    }
-  ],
-  "test": [
-    {
-      "title": "foo",
-      "body": "bar",
-      "userId": 1,
-      "id": 1
-    },
-    {
-      "firstName": "Paul",
-      "id": 2
+      "id": 11,
+      "playerId": "202391"
     }
   ]
 }
