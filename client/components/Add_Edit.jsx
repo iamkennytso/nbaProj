@@ -17,6 +17,9 @@ class Edit extends React.Component {
   componentWillMount(){
     if(this.props.editMode){
       //I couldn't get it to work with the spread operator, I kept getting syntax errors
+      //Might be a webpack issue?
+      //Also, isn't this more memory intensive since I'm creating a new object? 
+      //Whats the advantage of this?
       let player = Object.assign({}, this.props.player)
       player.editMode = true;
       player.awaitingPlayerId = player.playerId

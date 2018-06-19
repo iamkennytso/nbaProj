@@ -1,24 +1,53 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 import {BrowserRouter as Router, Link, Route} from 'react-router-dom'
+import {createStore, combineReducers} from 'redux'
+import {Provider} from 'react-redux'
+
 
 import Home from './components/Home.jsx'
 import Instructions from './components/Instructions.jsx'
 import Edit from './components/Add_Edit.jsx'
 
+const players = function(){
+  return ([
+    {
+      "playerId": "2544",
+      "firstName": "King",
+      "lastName": "James",
+      "jerseyNo": "23",
+      "position": "F-G",
+      "teamAbbr": "CLE",
+      "displayName": "King James",
+      "id": 1
+    },
+    {
+      "id": 2,
+      "displayName": "Anthony Davis",
+      "firstName": "Anthony",
+      "jerseyNo": "23",
+      "lastName": "Davis",
+      "playerId": "203076",
+      "position": "F-C",
+      "teamAbbr": "NOP"
+    },
+  ])
+}
+
+const store = createStore(combineReducers({ players }))
+
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      mess:'world',
-      players:[]
+      players: []
     }
     this.backToHome = this.backToHome.bind(this)
   }
   componentWillMount(){
     fetch('http://localhost:3000/players')
       .then(data => data.json())
-      .then(Json => this.setState({ players: Json}))
+      .then(Json => this.setState({ players:Json }))
   }
   backToHome(){
     fetch('http://localhost:3000/players')
@@ -51,4 +80,9 @@ class App extends React.Component {
   }
 }
 
-ReactDom.render(<App />,document.getElementById('app'));
+ReactDom.render(
+  // <Provider store={store}> 
+    <App /> 
+  // </Provider>,
+  , document.getElementById('app')
+);

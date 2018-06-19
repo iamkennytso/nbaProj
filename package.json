@@ -4,7 +4,7 @@
   "description": "Coding Challenge for NBA",
   "main": "server/main.js",
   "scripts": {
-    "start": "webpack && node server/main.js && json-server --watch db.json"
+    "start": "webpack && json-server --watch db.json && node server/main.js"
   },
   "repository": {
     "type": "git"
@@ -25,6 +25,7 @@
     "react": "^16.1.0",
     "react-dom": "^16.1.0",
     "react-redux": "^5.0.7",
-    "react-router-dom": "^4.3.1"
+    "react-router-dom": "^4.3.1",
+    "redux": "^4.0.0"
   }
 }
